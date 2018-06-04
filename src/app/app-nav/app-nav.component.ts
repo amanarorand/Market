@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {ActivatedRoute,Router,Route}  from '@angular/router'
 @Component({
   selector: 'app-app-nav',
   templateUrl: './app-nav.component.html',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppNavComponent implements OnInit {
 
-  constructor() { }
+  constructor(public activatedRoute: Router) { }
 
   ngOnInit() {
   }

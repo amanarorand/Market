@@ -1,0 +1,51 @@
+<p>
+  user works!
+</p>
+<form [formGroup] = "userForm" novalidate>
+  <div style="display: table;text-align: center;border-spacing:4px">
+    <div class="frmRow" style="display: table-row">
+      <div style="display: table-cell">
+        <label for="txtName">Name</label>
+      </div>
+      <div style="display: table-cell;width:2%"></div>
+      <div style="display: table-cell">
+        <input type="text" id="txtName" [(ngModel)]="user.Name" formControlName="Name">
+      </div>
+    </div>
+    <div class="frmRow" style="display: table-row">
+      <div style="display: table-cell">
+        <label for="txtEmail">Email</label>
+      </div>
+      <div style="display: table-cell;width:2%"></div>
+      <div style="display: table-cell">
+        <input type="text" id="txtEmail" [(ngModel)]="user.Email" formControlName="Email">
+      </div>
+    </div>
+    <div class="frmRow" style="display: table-row">
+        <div style="display: table-cell">
+          <label for="txtPassword">Password</label>
+        </div>
+        <div style="display: table-cell;width:2%"></div>
+        <div style="display: table-cell">
+          <input type="password" id="txtPassword" [(ngModel)]="user.Password" formControlName="Pwd">
+        </div>
+    </div>
+    <div class="frmRow" style="display: table-row">
+      <div></div>
+      <div></div>
+      <div>
+        <div style="display: table">
+            <div style="display:table-row">
+                <div style="display: table-cell">
+                    <button (click)="onSubmit()" [disabled]="!userForm.valid">Submit</button>
+                </div>
+                <div style="display: table-cell">
+                    <button (click)="onClear()" >Clear</button>
+                </div>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form>

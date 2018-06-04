@@ -1,0 +1,34 @@
+<form [formGroup]="loginForm" novalidate>
+<div style="display: table;border-spacing: 4px">
+  <div style="display: table-row">
+    <div style="display: table-cell">
+      <label for="txtUserName">User Name</label>
+    </div>
+    <div style="display: table-cell;width:2%">
+    </div>
+    <div style="display: table-cell">
+      <input  formControlName="UserName" 
+              id="txtUserName">
+    </div>
+  </div>
+  <div style="display: table-row">
+      <div style="display: table-cell">
+          <label for="txtPassword">Password</label>
+        </div>
+        <div style="display: table-cell;width:2%">
+        </div>
+        <div style="display: table-cell">
+          <input formControlName="Password" 
+                  type="password" 
+                  id="txtPassword">
+        </div>
+  </div>
+  <div style="display: table-row">
+    <div style="display: table-cell"></div>
+    <div style="display: table-cell"></div>
+    <div style="display: table-cell">
+        <button [disabled]="!loginForm.valid" (click)="onLogin()">Login</button>
+    </div>
+  </div>
+</div>
+</form>

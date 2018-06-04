@@ -8,18 +8,23 @@ import { AppHomeComponent } from './app-home/app-home.component';
 import { AppHomeModule } from './app-home/app-home.module';
 import { AppNavComponent } from './app-nav/app-nav.component';
 import { AppNavModule } from './app-nav/app-nav.module';
+import { AdminModule}  from './admin/admin.module';
+import { LoginComponent } from './login/login.component';
+import {AppCommonModule}  from './app-common/app-common.module';
 const routes: Routes = [
+  { path: 'login',component : LoginComponent},
   { path: 'home', component: AppHomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, HttpModule,
     RouterModule.forRoot(routes),
-    AppHomeModule, AppNavModule
+    AppHomeModule, AppNavModule, AdminModule,AppCommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
