@@ -7,7 +7,8 @@
     <div style="display: table-cell;width:2%">
     </div>
     <div style="display: table-cell">
-      <input  formControlName="UserName" 
+      <input [(ngModel)]="login.UserName" 
+              formControlName="UserName" 
               id="txtUserName">
     </div>
   </div>
@@ -18,7 +19,8 @@
         <div style="display: table-cell;width:2%">
         </div>
         <div style="display: table-cell">
-          <input formControlName="Password" 
+          <input  formControlName="Password" 
+                  [(ngModel)]="login.Password"
                   type="password" 
                   id="txtPassword">
         </div>

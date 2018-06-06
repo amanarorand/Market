@@ -5,14 +5,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AppCommonService } from './app-common.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth.service';
+import { MatProgressBarModule } from '@angular/material/progress-bar'
+import { LoaderService } from '../loader/loader.service';
 @NgModule({
   imports: [
     CommonModule, RouterModule, FormsModule,
-    ReactiveFormsModule, HttpClientModule
+    ReactiveFormsModule, HttpClientModule, MatProgressBarModule
   ],
   declarations: [],
-  providers: [AppCommonService, AuthService],
+  providers: [AppCommonService, AuthService,LoaderService],
   exports: [RouterModule, FormsModule, ReactiveFormsModule,
-    HttpClientModule]
+    HttpClientModule, MatProgressBarModule]
 })
 export class AppCommonModule { }

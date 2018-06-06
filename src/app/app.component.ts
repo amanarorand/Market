@@ -1,12 +1,22 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  ViewContainerRef, OnInit, ViewChild
+} from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { LoaderService } from './loader/loader.service';
+import {LoaderComponent}  from './loader/loader.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  constructor(private httpClient: HttpClient) {
+export class AppComponent implements OnInit {
+  @ViewChild('loader', { read: ViewContainerRef }) loaderContainer: ViewContainerRef;
+  constructor(private httpClient: HttpClient,
+    private loaderService: LoaderService,
+    private resolver: ComponentFactoryResolver
+  ) {
 
   }
   title = 'Guest';
@@ -17,7 +27,7 @@ export class AppComponent {
         "Authorization": "Basic " + btoa("aman:pwd")
       })
     }
-    this.httpClient.get<any>('http://localhost:60725/api/Default/1',httpOptions)
+    this.httpClient.get<any>('http://localhost:8080/ApiApp/api/Default/1')
       .subscribe(
         res => {
           alert('s');
@@ -26,5 +36,15 @@ export class AppComponent {
           alert('f');
         }
       );
+  }
+
+  ngOnInit() {
+    this.loaderService.on("start").subscribe(() => {
+      var factory = this.resolver.resolveComponentFactory(LoaderComponent)
+      this.loaderContainer.createComponent(factory);
+    });
+    this.loaderService.on("end").subscribe(() => { 
+      this.loaderContainer.clear()
+    });
   }
 }
