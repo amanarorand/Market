@@ -12,7 +12,7 @@ import {LoaderComponent}  from './loader/loader.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  @ViewChild('loader', { read: ViewContainerRef }) loaderContainer: ViewContainerRef;
+  @ViewChild('LoaderParent', { read: ViewContainerRef }) loaderContainer: ViewContainerRef;
   constructor(private httpClient: HttpClient,
     private loaderService: LoaderService,
     private resolver: ComponentFactoryResolver
@@ -39,11 +39,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loaderService.on("start").subscribe(() => {
+    const i = 0;
+    this.loaderService.on("start").subscribe(() => {    
       var factory = this.resolver.resolveComponentFactory(LoaderComponent)
       this.loaderContainer.createComponent(factory);
     });
     this.loaderService.on("end").subscribe(() => { 
+    
       this.loaderContainer.clear()
     });
   }

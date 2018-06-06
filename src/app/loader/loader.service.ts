@@ -1,16 +1,14 @@
 import { Observable, Subject } from 'rxjs';
-import { Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 @Injectable()
 export class LoaderService {
     private subjects: Subject<string>[] = [];
-    public publish(eventName: string)
-    {
-        this.subjects[eventName] = this.subjects[eventName] = new Subject();
+    publish(eventName: string) {
+        this.subjects[eventName] = this.subjects[eventName] || new Subject<string>();
         this.subjects[eventName].next();
     }
-    public on(eventName: string): Observable<string>
-    {
-        this.subjects[eventName] = this.subjects[eventName] = new Subject();
+    on(eventName: string): Observable<string> {
+        this.subjects[eventName] = this.subjects[eventName] || new Subject<string>();
         return this.subjects[eventName].asObservable();
     }
 }

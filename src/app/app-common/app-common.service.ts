@@ -5,15 +5,14 @@ import { catchError, map } from 'rxjs/operators';
 import { pathEnum } from '../app-entities/app-enum';
 import { Router } from '@angular/router';
 import { AuthService } from '../app-common/auth.service';
-import { LoaderService}  from '../loader/loader.service';
+import { LoaderService } from '../loader/loader.service';
 @Injectable({
   providedIn: 'root'
 })
 export class AppCommonService<I, O>{
   constructor(private http: HttpClient,
     private router: Router,
-    private authService: AuthService,
-    private loaderService: LoaderService
+    private authService: AuthService, private loaderService: LoaderService
   ) { }
   public post(url: string, data: I, httpOptions: any = null): Observable<any> {
     this.loaderService.publish("start");
@@ -29,9 +28,10 @@ export class AppCommonService<I, O>{
     else {
       _post = this.http.post<O>(mainUrl, data);
     }
+
     return _post.pipe(
       map(res => {
-        this.loaderService.publish("end");
+       
         return of(res);
       }),
       catchError(err => {
