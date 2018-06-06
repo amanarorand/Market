@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   ) {
 
   }
-  title = 'Guest';
+  title = 'Developer';
 
   onclick() {
     const httpOptions = {
