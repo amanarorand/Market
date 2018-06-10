@@ -9,11 +9,13 @@ import { LoaderService } from '../loader/loader.service';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AppCommonService<I, O>{
   constructor(private http: HttpClient,
     private router: Router,
     private authService: AuthService, private loaderService: LoaderService
   ) { }
+
   public post(url: string, data: I, httpOptions: any = null): Observable<any> {
     this.loaderService.publish("start");
     let mainUrl = '';
@@ -31,13 +33,10 @@ export class AppCommonService<I, O>{
 
     return _post.pipe(
       map(res => {
-       
+        this.loaderService.publish("end");
         return of(res);
       }),
-      catchError(err => {
-        // if ([500, 400].indexOf(err.status) > -1) {
-        //   alert(err.error);
-        // }
+      catchError(err => {       
         this.loaderService.publish("end");
         this.handleError(err, this.authService);
         return throwError(err);
@@ -45,7 +44,31 @@ export class AppCommonService<I, O>{
     );
   }
 
-  handleError(err: any, authService: AuthService) {
+  public get(url: string,httpOptions: any = null): Observable<any>
+  {
+    this.loaderService.publish("start");
+    var mainUrl = pathEnum.basePath + 'api/' + url;
+    let _get;          
+    if (httpOptions) {
+      _get = this.http.get<O>(mainUrl,httpOptions);
+    }
+    else {
+      _get = this.http.get<O>(mainUrl);
+    }
+    return _get.pipe(
+      map(res => {       
+        this.loaderService.publish("end");
+        return of(res);
+      }),
+      catchError(err => {        
+        this.loaderService.publish("end");
+        this.handleError(err, this.authService);
+        return throwError(err);
+      })
+    );
+  }
+
+  private handleError(err: any, authService: AuthService) {
     switch (err.status) {
       case 500:
         alert(err.error);

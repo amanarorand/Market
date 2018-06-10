@@ -16,10 +16,12 @@ export class UserComponent implements OnInit {
   emailFrmCtrl: FormControl;
   pwdFrmCtrl: FormControl;
   user: User;
+  
   constructor(private service: AppCommonService<User, string>) {
 
     this.initializeUserForm();
   }
+
   private initializeUserForm() {
     this.user = new User('', '', '');
     this.nameFrmCtrl = new FormControl('',
@@ -36,6 +38,7 @@ export class UserComponent implements OnInit {
       Pwd: this.pwdFrmCtrl
     });
   }
+
   ngOnInit() {
   }
 

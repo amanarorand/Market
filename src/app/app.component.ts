@@ -49,4 +49,9 @@ export class AppComponent implements OnInit {
       this.loaderContainer.clear()
     });
   }
+  onLogout()
+  {
+    
+  }
+
 }

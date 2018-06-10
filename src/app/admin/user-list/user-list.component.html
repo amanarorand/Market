@@ -1,3 +1,10 @@
 <p>
   user-list works!
 </p>
+<div style="display: table">
+  <div *ngFor="let u of userList" style="display: table-row">
+      <div style="display: table-cell">
+          {{u.Name}}
+      </div>
+  </div>
+</div>
