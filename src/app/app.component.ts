@@ -5,7 +5,8 @@ import {
 } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { LoaderService } from './loader/loader.service';
-import {LoaderComponent}  from './loader/loader.component';
+import { LoaderComponent } from './loader/loader.component';
+import { AuthService } from './app-common/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,10 +16,10 @@ export class AppComponent implements OnInit {
   @ViewChild('LoaderParent', { read: ViewContainerRef }) loaderContainer: ViewContainerRef;
   constructor(private httpClient: HttpClient,
     private loaderService: LoaderService,
-    private resolver: ComponentFactoryResolver
-  ) {
+    private resolver: ComponentFactoryResolver,
+    private authService: AuthService
+  ) { }
 
-  }
   title = 'Developer';
 
   onclick() {
@@ -38,20 +39,19 @@ export class AppComponent implements OnInit {
       );
   }
 
-  ngOnInit() {
-    const i = 0;
-    this.loaderService.on("start").subscribe(() => {    
+  ngOnInit() {    
+    this.loaderService.on("start").subscribe(() => {
       var factory = this.resolver.resolveComponentFactory(LoaderComponent)
       this.loaderContainer.createComponent(factory);
     });
-    this.loaderService.on("end").subscribe(() => { 
-    
+    this.loaderService.on("end").subscribe(() => {
+
       this.loaderContainer.clear()
     });
   }
-  onLogout()
-  {
-    
+
+  onLogout() {
+    this.authService.Logout();
   }
 
 }
