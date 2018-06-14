@@ -5,28 +5,38 @@ import { pathEnum } from '../../app-entities/app-enum'
 import { Observable, BehaviorSubject, } from 'rxjs';
 import { DataSource, CollectionViewer } from '@angular/cdk/collections';
 import { finalize, catchError } from 'rxjs/operators';
+import { MatDialog } from '@angular/material';
+import { EditUserComponent } from '../edit-user/edit-user.component';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  displayedColumns = ['Name','Email','Action'];
+  displayedColumns = ['Name', 'Email', 'Action'];
   userList: User[];
   dataSource: UserDataSource
-  constructor(private appCommonService: AppCommonService<null, User[]>) { }
+  constructor(
+    private appCommonService:
+      AppCommonService<null, User[]>,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit() {
     this.dataSource = new UserDataSource(this.appCommonService);
     this.dataSource.loadUser();
     this.appCommonService.get(pathEnum.UserList)
-    .subscribe(
+      .subscribe(
         res => {
           this.userList = res.value;
         }
       );
   }
 
+  onEdit() {
+    this.dialog.open(EditUserComponent, 
+      { minWidth: '500', minHeight: '500',data:{} });
+  }
 }
 
 

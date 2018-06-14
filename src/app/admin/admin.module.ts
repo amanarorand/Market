@@ -5,6 +5,7 @@ import { Routes, RouterModule, RouterLink } from '@angular/router';
 import { AppCommonModule } from '../app-common/app-common.module';
 import { UserListComponent } from './user-list/user-list.component';
 import { AuthGuard } from '../guard/auth.guard';
+import { EditUserComponent } from './edit-user/edit-user.component';
 const routes: Routes = [
   {
     path: 'user', component: UserComponent,canActivate: [AuthGuard]
@@ -17,8 +18,9 @@ const routes: Routes = [
   imports: [
     CommonModule, RouterModule.forRoot(routes), AppCommonModule
   ],
-  declarations: [UserComponent, UserListComponent],
+  declarations: [UserComponent, UserListComponent, EditUserComponent],
   exports: [RouterModule],
-  providers: [RouterLink]
+  providers: [RouterLink],
+  entryComponents: [EditUserComponent]
 })
 export class AdminModule { }

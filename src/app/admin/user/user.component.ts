@@ -53,6 +53,6 @@ export class UserComponent implements OnInit {
   }
 
   onClear() {
-    this.user = new User('', '', '');
+    this.user = new User('', '', '','');
   }
 }

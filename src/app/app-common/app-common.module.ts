@@ -6,12 +6,14 @@ import { AppCommonService } from './app-common.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { LoaderService } from '../loader/loader.service';
+import {BrowserAnimationsModule}  from '@angular/platform-browser/animations'
 import {
   MatDialogModule,
   MatTableModule,
   MatProgressSpinnerModule,
   MatProgressBarModule,
-  MatCardModule
+  MatCardModule,
+  MatDialog,
 }
   from '@angular/material'
 @NgModule({
@@ -20,7 +22,11 @@ import {
     ReactiveFormsModule, HttpClientModule, MatProgressBarModule
   ],
   declarations: [],
-  providers: [AppCommonService, AuthService, LoaderService],
+  providers: [
+    AppCommonService, 
+    AuthService, 
+    LoaderService
+  ],
   exports: [RouterModule,
     FormsModule,
     ReactiveFormsModule,
@@ -28,7 +34,8 @@ import {
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatCardModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,BrowserAnimationsModule
   ]
 })
 export class AppCommonModule { }
