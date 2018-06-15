@@ -1,6 +1,6 @@
 export enum pathEnum
 {
-    basePath = 'http://localhost:8080/ApiApp/',
+    basePath = 'http://localhost/ApiApp/',
     createUserPath = 'User',
     login = "Token",
     UserList ="User"

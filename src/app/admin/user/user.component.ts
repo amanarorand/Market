@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validator, Validators }
-  from '@angular/forms';
+import { FormGroup, FormControl, Validator, Validators }from '@angular/forms';
 import { AppCommonService } from '../../app-common/app-common.service';
 import { User } from '../../app-entities/User';
 import { pathEnum } from '../../app-entities/app-enum';
@@ -16,7 +15,7 @@ export class UserComponent implements OnInit {
   emailFrmCtrl: FormControl;
   pwdFrmCtrl: FormControl;
   user: User;
-  
+
   constructor(private service: AppCommonService<User, string>) {
 
     this.initializeUserForm();
@@ -43,16 +42,16 @@ export class UserComponent implements OnInit {
   }
 
   onSubmit() {
-   
+
     this.service.post(pathEnum.createUserPath, this.user).subscribe(
-      response => {       
+      response => {
         alert(response.value);
-        this.user = new User('', '', '');
+        this.user = new User('', '', '', '');
       }
     )
   }
 
   onClear() {
-    this.user = new User('', '', '','');
+    this.user = new User('', '', '', '');
   }
 }

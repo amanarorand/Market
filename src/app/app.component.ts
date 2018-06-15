@@ -23,30 +23,31 @@ export class AppComponent implements OnInit {
   title = 'Developer';
 
   onclick() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        "Authorization": "Basic " + btoa("aman:pwd")
-      })
-    }
-    this.httpClient.get<any>('http://localhost:8080/ApiApp/api/Default/1')
-      .subscribe(
-        res => {
-          alert('s');
-        },
-        err => {
-          alert('f');
-        }
-      );
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     "Authorization": "Basic " + btoa("aman:pwd")
+    //   })
+    // }
+    // this.httpClient.get<any>('http://localhost:8080/ApiApp/api/Default/1')
+    //   .subscribe(
+    //     res => {
+    //       alert('s');
+    //     },
+    //     err => {
+    //       alert('f');
+    //     }
+    //   );
   }
 
-  ngOnInit() {    
-    this.loaderService.on("start").subscribe(() => {
-      var factory = this.resolver.resolveComponentFactory(LoaderComponent)
+  ngOnInit() {
+    this.loaderService.on('start').subscribe(() => {
+      this.loaderContainer.clear();
+      const factory = this.resolver.resolveComponentFactory(LoaderComponent);
       this.loaderContainer.createComponent(factory);
     });
-    this.loaderService.on("end").subscribe(() => {
+    this.loaderService.on('end').subscribe(() => {
 
-      this.loaderContainer.clear()
+      this.loaderContainer.clear();
     });
   }
 

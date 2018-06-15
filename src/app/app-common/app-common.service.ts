@@ -71,12 +71,12 @@ export class AppCommonService<I, O>{
   private handleError(err: any, authService: AuthService) {
     switch (err.status) {
       case 500:
-        alert(err.error);
+        alert(err.error.Message);
         break;
       case 400:
         alert(err.error); break;
       case 401:
-        alert(err.error.Message)
+        alert(err.error.Message);
         authService.Logout();
         break;
     }

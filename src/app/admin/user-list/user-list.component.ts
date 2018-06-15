@@ -34,8 +34,8 @@ export class UserListComponent implements OnInit {
   }
 
   onEdit() {
-    this.dialog.open(EditUserComponent, 
-      { minWidth: '500', minHeight: '500',data:{} });
+    this.dialog.open(EditUserComponent,
+      { minWidth: '500', minHeight: '500', data: {} });
   }
 }
 
