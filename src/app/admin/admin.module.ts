@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './user/user.component';
 import { Routes, RouterModule, RouterLink } from '@angular/router';
@@ -8,9 +8,14 @@ import { AuthGuard } from '../guard/auth.guard';
 import { EditUserComponent } from './edit-user/edit-user.component';
 const routes: Routes = [
   {
-    path: 'user', component: UserComponent,canActivate: [AuthGuard]
+    path: 'user', component: UserComponent, canActivate: [AuthGuard]
   },
-  { path: 'userlist', component: UserListComponent, canActivate: [AuthGuard] }
+  {
+    path: 'userlist', component: UserListComponent, canActivate: [AuthGuard],
+    children: [
+      { path: 'edit/:id', component: EditUserComponent }
+    ]
+  }
 ];
 
 

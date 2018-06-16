@@ -10,58 +10,54 @@ import { LoaderService } from '../loader/loader.service';
   providedIn: 'root'
 })
 
-export class AppCommonService<I, O>{
+export class AppCommonService<I, O> {
   constructor(private http: HttpClient,
     private router: Router,
     private authService: AuthService, private loaderService: LoaderService
   ) { }
 
   public post(url: string, data: I, httpOptions: any = null): Observable<any> {
-    this.loaderService.publish("start");
+    this.loaderService.publish('start');
     let mainUrl = '';
-    if (url.indexOf('Token') == -1) {
+    if (url.indexOf('Token') === -1) {
       mainUrl = pathEnum.basePath + 'api/' + url;
-    }
-    else { mainUrl = pathEnum.basePath + url; }
+    } else { mainUrl = pathEnum.basePath + url; }
     let _post;
     if (httpOptions) {
       _post = this.http.post<O>(mainUrl, data, httpOptions);
-    }
-    else {
+    } else {
       _post = this.http.post<O>(mainUrl, data);
     }
 
     return _post.pipe(
       map(res => {
-        this.loaderService.publish("end");
+        this.loaderService.publish('end');
         return of(res);
       }),
-      catchError(err => {       
-        this.loaderService.publish("end");
+      catchError(err => {
+        this.loaderService.publish('end');
         this.handleError(err, this.authService);
         return throwError(err);
       })
     );
   }
 
-  public get(url: string,httpOptions: any = null): Observable<any>
-  {
-    this.loaderService.publish("start");
-    var mainUrl = pathEnum.basePath + 'api/' + url;
-    let _get;          
+  public get(url: string, httpOptions: any = null): Observable<any> {
+    this.loaderService.publish('start');
+    const mainUrl = pathEnum.basePath + 'api/' + url;
+    let _get;
     if (httpOptions) {
-      _get = this.http.get<O>(mainUrl,httpOptions);
-    }
-    else {
+      _get = this.http.get<O>(mainUrl, httpOptions);
+    } else {
       _get = this.http.get<O>(mainUrl);
     }
     return _get.pipe(
-      map(res => {       
-        this.loaderService.publish("end");
+      map(res => {
+        this.loaderService.publish('end');
         return of(res);
       }),
-      catchError(err => {        
-        this.loaderService.publish("end");
+      catchError(err => {
+        this.loaderService.publish('end');
         this.handleError(err, this.authService);
         return throwError(err);
       })
@@ -82,8 +78,7 @@ export class AppCommonService<I, O>{
     }
   }
 
-  private CreateLoader()
-  {
+  private CreateLoader() {
 
   }
 

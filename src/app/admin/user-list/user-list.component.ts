@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../app-entities/User';
 import { AppCommonService } from '../../app-common/app-common.service';
-import { pathEnum } from '../../app-entities/app-enum'
+import { pathEnum } from '../../app-entities/app-enum';
 import { Observable, BehaviorSubject, } from 'rxjs';
 import { DataSource, CollectionViewer } from '@angular/cdk/collections';
 import { finalize, catchError } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
 import { EditUserComponent } from '../edit-user/edit-user.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -15,11 +16,12 @@ import { EditUserComponent } from '../edit-user/edit-user.component';
 export class UserListComponent implements OnInit {
   displayedColumns = ['Name', 'Email', 'Action'];
   userList: User[];
-  dataSource: UserDataSource
+  dataSource: UserDataSource;
   constructor(
     private appCommonService:
       AppCommonService<null, User[]>,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -37,10 +39,13 @@ export class UserListComponent implements OnInit {
     this.dialog.open(EditUserComponent,
       { minWidth: '500', minHeight: '500', data: {} });
   }
+  onEdit2(id) {
+    this.router.navigate(['userlist/edit', id]);
+  }
 }
 
 
-class UserDataSource implements DataSource<User>{
+class UserDataSource implements DataSource<User> {
 
   private userSubject = new BehaviorSubject<User[]>([]);
   constructor(private appCommonService: AppCommonService<null, User[]>) {
