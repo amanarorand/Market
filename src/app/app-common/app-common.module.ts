@@ -6,7 +6,7 @@ import { AppCommonService } from './app-common.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { LoaderService } from '../loader/loader.service';
-import {BrowserAnimationsModule}  from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import {
   MatDialogModule,
   MatTableModule,
@@ -14,17 +14,19 @@ import {
   MatProgressBarModule,
   MatCardModule,
   MatDialog,
-}
-  from '@angular/material'
+} from '@angular/material';
+import { StoreModule} from '@ngrx/store';
+import { AppReducer } from '../Redux/app.reducer';
 @NgModule({
   imports: [
     CommonModule, RouterModule, FormsModule,
-    ReactiveFormsModule, HttpClientModule, MatProgressBarModule
+    ReactiveFormsModule, HttpClientModule,
+    MatProgressBarModule, StoreModule.provideStore({ appState: AppReducer})
   ],
   declarations: [],
   providers: [
-    AppCommonService, 
-    AuthService, 
+    AppCommonService,
+    AuthService,
     LoaderService
   ],
   exports: [RouterModule,
@@ -35,7 +37,7 @@ import {
     MatProgressSpinnerModule,
     MatCardModule,
     MatTableModule,
-    MatDialogModule,BrowserAnimationsModule
+    MatDialogModule, BrowserAnimationsModule
   ]
 })
 export class AppCommonModule { }

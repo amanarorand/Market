@@ -16,7 +16,8 @@ import { LoaderComponent } from './loader/loader.component';
 
 export const AUTH_INTERCEPTOR = [
   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
-]
+];
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: AppHomeComponent },

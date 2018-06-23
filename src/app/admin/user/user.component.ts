@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validator, Validators }from '@angular/forms';
+import { FormGroup, FormControl, Validator, Validators } from '@angular/forms';
 import { AppCommonService } from '../../app-common/app-common.service';
 import { User } from '../../app-entities/User';
 import { pathEnum } from '../../app-entities/app-enum';
@@ -22,15 +22,15 @@ export class UserComponent implements OnInit {
   }
 
   private initializeUserForm() {
-    this.user = new User('', '', '');
+    this.user = new User('', '', '', '');
     this.nameFrmCtrl = new FormControl('',
       [Validators.required, Validators.maxLength(50)]
-    )
+    );
     this.emailFrmCtrl = new FormControl('',
       [Validators.required, Validators.email]
     );
     this.pwdFrmCtrl = new FormControl('',
-      [Validators.required, Validators.minLength(7)])
+      [Validators.required, Validators.minLength(7)]);
     this.userForm = new FormGroup({
       Name: this.nameFrmCtrl,
       Email: this.emailFrmCtrl,
