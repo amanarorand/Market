@@ -16,11 +16,11 @@
       "es2017",
       "dom"
     ]
-  },
-  "include": [
-    "src//*",
-    "node_modules/@ngrx/store/index.ts",
-    "node_modules/@ngrx/store/src/dispatcher.ts",
-    "node_modules/@ngrx/store/src/*.ts"
-  ]
+  }
+  // ,
+  // "include": [
+  //   "src//*",
+  //   "node_modules/@ngrx/store/index.ts", 
+  //   "node_modules/@ngrx/store/src/*.ts"
+  // ]
 }

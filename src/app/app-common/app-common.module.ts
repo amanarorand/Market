@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppCommonService } from './app-common.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { LoaderService } from '../loader/loader.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatDialogModule,
   MatTableModule,
@@ -21,7 +21,8 @@ import { AppReducer } from '../Redux/app.reducer';
   imports: [
     CommonModule, RouterModule, FormsModule,
     ReactiveFormsModule, HttpClientModule,
-    MatProgressBarModule, StoreModule.provideStore({ appState: AppReducer})
+    MatProgressBarModule
+    // , StoreModule.provideStore({ appState: AppReducer})
   ],
   declarations: [],
   providers: [
@@ -37,7 +38,9 @@ import { AppReducer } from '../Redux/app.reducer';
     MatProgressSpinnerModule,
     MatCardModule,
     MatTableModule,
-    MatDialogModule, BrowserAnimationsModule
+    MatDialogModule,
+    BrowserAnimationsModule
+    // ,StoreModule
   ]
 })
 export class AppCommonModule { }

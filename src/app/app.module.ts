@@ -13,7 +13,8 @@ import { LoginComponent } from './login/login.component';
 import { AppCommonModule } from './app-common/app-common.module';
 import { AuthInterceptor } from './auth-interceptor';
 import { LoaderComponent } from './loader/loader.component';
-
+import { StoreModule } from '@ngrx/store';
+import { AppReducer } from './Redux/app.reducer';
 export const AUTH_INTERCEPTOR = [
   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
 ];
@@ -32,7 +33,8 @@ const routes: Routes = [
   imports: [
     BrowserModule, HttpClientModule, HttpModule,
     RouterModule.forRoot(routes),
-    AppHomeModule, AppNavModule, AdminModule, AppCommonModule
+    AppHomeModule, AppNavModule, AdminModule, AppCommonModule,
+    StoreModule.forRoot({ appState: AppReducer})
   ],
   providers: [AUTH_INTERCEPTOR],
   bootstrap: [AppComponent],

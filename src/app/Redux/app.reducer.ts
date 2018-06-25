@@ -1,7 +1,10 @@
 import * as AppActions from './app.actions';
-import { AppState } from './app.state';
+import { UserInfo } from './app.state';
+const initialState: UserInfo = {
+    token: null
+};
 
-export function AppReducer(state: AppState, action: AppActions.Actions) {
+export function AppReducer(state: UserInfo = initialState, action: AppActions.Actions) {
     switch (action.type) {
         case AppActions.ADD_STATE:
             return state = action.payload;
