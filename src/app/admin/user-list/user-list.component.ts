@@ -35,9 +35,9 @@ export class UserListComponent implements OnInit {
       );
   }
 
-  onEdit() {
+  onEdit(ID) {
     this.dialog.open(EditUserComponent,
-      { minWidth: '500', minHeight: '500', data: {} });
+      { minWidth: '500', minHeight: '500', data: {id: ID} });
   }
   onEdit2(id) {
     this.router.navigate(['userlist/edit', id]);

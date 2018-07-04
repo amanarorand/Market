@@ -14,14 +14,17 @@ import {
   MatProgressBarModule,
   MatCardModule,
   MatDialog,
+  MatDatepickerModule,
+  MatNativeDateModule, MatInputModule
 } from '@angular/material';
-import { StoreModule} from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { AppReducer } from '../Redux/app.reducer';
 @NgModule({
   imports: [
     CommonModule, RouterModule, FormsModule,
     ReactiveFormsModule, HttpClientModule,
-    MatProgressBarModule
+    MatProgressBarModule, MatDatepickerModule,
+    MatNativeDateModule, MatInputModule
     // , StoreModule.provideStore({ appState: AppReducer})
   ],
   declarations: [],
@@ -39,7 +42,10 @@ import { AppReducer } from '../Redux/app.reducer';
     MatCardModule,
     MatTableModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule
     // ,StoreModule
   ]
 })

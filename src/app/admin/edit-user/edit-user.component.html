@@ -1,4 +1,56 @@
-<p>
-  edit-user works!
-  {{user | json}}
-</p>
+<form [formGroup]="userForm" novalidate>
+  <div style="display: table;text-align: center;border-spacing:4px">
+    <div class="frmRow" style="display: table-row">
+      <div style="display: table-cell">
+        <label for="txtName">Name</label>
+      </div>
+      <div style="display: table-cell;width:2%"></div>
+      <div style="display: table-cell">
+        <mat-form-field>
+          <input matInput type="text" id="txtName" [(ngModel)]="user.Name" formControlName="Name">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="frmRow" style="display: table-row">
+      <div style="display: table-cell">
+        <label for="txtEmail">Email</label>
+      </div>
+      <div style="display: table-cell;width:2%"></div>
+      <div style="display: table-cell">
+        <mat-form-field>
+          <input matInput type="text" disabled id="txtEmail" [(ngModel)]="user.Email" formControlName="Email">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="frmRow" style="display: table-row">
+      <div style="display: table-cell">
+        <label for="txtPassword">Password</label>
+      </div>
+      <div style="display: table-cell;width:2%"></div>
+      <div style="display: table-cell">
+        <input matInput type="password" id="txtPassword" [(ngModel)]="user.Password" formControlName="Pwd">
+      </div>
+    </div>
+    <div class="frmRow" style="display: table-row">
+      <div style="display: table-cell">
+        <label for="txtDOB">Date Of Birth</label>
+      </div>
+      <div style="display: table-cell;width:2%"></div>
+      <div style="display: table-cell">
+        <mat-form-field>
+          <input matInput readonly="readonly" [matDatepicker]="dob" [(ngModel)]="user.DOB" formControlName="DOB">
+          <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+          <mat-datepicker #dob></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="frmRow" style="display: table-row">
+      <div style="display: table-cell"></div>
+      <div style="display: table-cell"> </div>
+      <div style="display: table-cell;text-align: left">
+        <button (click)="onSubmit()" [disabled]="!userForm.valid">Submit</button>
+        <!-- <button (click)="onClear()" >Clear</button> -->
+      </div>
+    </div>
+  </div>
+</form>
