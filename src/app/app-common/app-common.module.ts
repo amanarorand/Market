@@ -15,10 +15,30 @@ import {
   MatCardModule,
   MatDialog,
   MatDatepickerModule,
-  MatNativeDateModule, MatInputModule
+  MatNativeDateModule,
+  MatInputModule,
+  MAT_DATE_FORMATS,
+  DateAdapter,
+  NativeDateAdapter,
+  MAT_DATE_LOCALE
 } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 import { AppReducer } from '../Redux/app.reducer';
+import { AppDateAdapter } from './app.date.adapter';
+export const MY_FORMATS = {
+  parse: {
+      dateInput: {month: 'short', year: 'numeric', day: 'numeric'}
+  },
+  display: {
+      // dateInput: { month: 'short', year: 'numeric', day: 'numeric' },
+      dateInput: 'input',
+      // monthYearLabel: { month: 'short', year: 'numeric', day: 'numeric' },
+      monthYearLabel: 'inputMonth',
+      dateA11yLabel: {year: 'numeric', month: 'long', day: 'numeric'},
+      monthYearA11yLabel: {year: 'numeric', month: 'long'},
+  }
+};
+
 @NgModule({
   imports: [
     CommonModule, RouterModule, FormsModule,
@@ -31,7 +51,10 @@ import { AppReducer } from '../Redux/app.reducer';
   providers: [
     AppCommonService,
     AuthService,
-    LoaderService
+    LoaderService,
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    // { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   exports: [RouterModule,
     FormsModule,
