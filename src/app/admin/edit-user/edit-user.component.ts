@@ -7,6 +7,7 @@ import { pathEnum } from '../../app-entities/app-enum';
 import { Observable } from 'rxjs';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
@@ -19,8 +20,10 @@ export class EditUserComponent implements OnInit {
   emailFrmCtrl: FormControl;
   pwdFrmCtrl: FormControl;
   dobCtrl: FormControl;
+  genderCtrl: FormControl;
   constructor(private route: ActivatedRoute,
     private appCommonService: AppCommonService<number, User>,
+    private appCommonService_save: AppCommonService<User, any>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.initializeUserForm();
@@ -37,11 +40,13 @@ export class EditUserComponent implements OnInit {
     this.pwdFrmCtrl = new FormControl('',
       [Validators.required, Validators.minLength(7)]);
     this.dobCtrl = new FormControl('', [Validators.required]);
+    this.genderCtrl = new FormControl('', [Validators.required]);
     this.userForm = new FormGroup({
       Name: this.nameFrmCtrl,
       Email: this.emailFrmCtrl,
       Pwd: this.pwdFrmCtrl,
-      DOB: this.dobCtrl
+      DOB: this.dobCtrl,
+      Gender: this.genderCtrl
     });
   }
   ngOnInit() {
@@ -63,7 +68,12 @@ export class EditUserComponent implements OnInit {
   }
 
   onSubmit() {
-
+    this.appCommonService_save.post(pathEnum.modifyUser, this.user).subscribe(
+      response => {
+        // alert(response.value);
+        // this.user = new User('', '', '', '');
+      }
+    );
   }
 
   onClear() {

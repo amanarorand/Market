@@ -7,4 +7,5 @@ export class User {
 
     ) { }
     public DOB: string;
+    public Gender: string;
 }

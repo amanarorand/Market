@@ -20,7 +20,7 @@ import {
   MAT_DATE_FORMATS,
   DateAdapter,
   NativeDateAdapter,
-  MAT_DATE_LOCALE
+  MAT_DATE_LOCALE, MatRadioModule
 } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 import { AppReducer } from '../Redux/app.reducer';
@@ -44,7 +44,7 @@ export const MY_FORMATS = {
     CommonModule, RouterModule, FormsModule,
     ReactiveFormsModule, HttpClientModule,
     MatProgressBarModule, MatDatepickerModule,
-    MatNativeDateModule, MatInputModule
+    MatNativeDateModule, MatInputModule, MatRadioModule
     // , StoreModule.provideStore({ appState: AppReducer})
   ],
   declarations: [],
@@ -68,7 +68,8 @@ export const MY_FORMATS = {
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
+    MatRadioModule
     // ,StoreModule
   ]
 })

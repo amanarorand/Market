@@ -3,5 +3,6 @@ export enum pathEnum {
     createUserPath = 'User',
     login = 'Token',
     UserList = 'User',
-    getUser = 'User?id='
+    getUser = 'User?id=',
+    modifyUser = 'User/modify'
 }

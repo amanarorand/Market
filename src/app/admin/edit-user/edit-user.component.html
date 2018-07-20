@@ -1,47 +1,61 @@
 <form [formGroup]="userForm" novalidate>
   <div style="display: table;text-align: center;border-spacing:4px">
     <div class="frmRow" style="display: table-row">
-      <div style="display: table-cell">
+      <div style="display: table-cell;text-align: left">
         <label for="txtName">Name</label>
       </div>
       <div style="display: table-cell;width:2%"></div>
-      <div style="display: table-cell">
+      <div style="display: table-cell;text-align: left">
         <mat-form-field>
           <input matInput type="text" id="txtName" [(ngModel)]="user.Name" formControlName="Name">
         </mat-form-field>
       </div>
     </div>
     <div class="frmRow" style="display: table-row">
-      <div style="display: table-cell">
+      <div style="display: table-cell;text-align: left">
         <label for="txtEmail">Email</label>
       </div>
       <div style="display: table-cell;width:2%"></div>
-      <div style="display: table-cell">
+      <div style="display: table-cell;text-align: left">
         <mat-form-field>
           <input matInput type="text" disabled id="txtEmail" [(ngModel)]="user.Email" formControlName="Email">
         </mat-form-field>
       </div>
     </div>
     <div class="frmRow" style="display: table-row">
-      <div style="display: table-cell">
+      <div style="display: table-cell;text-align: left">
         <label for="txtPassword">Password</label>
       </div>
       <div style="display: table-cell;width:2%"></div>
-      <div style="display: table-cell">
+      <div style="display: table-cell;text-align: left">
+          <mat-form-field>
         <input matInput type="password" id="txtPassword" [(ngModel)]="user.Password" formControlName="Pwd">
+          </mat-form-field>
       </div>
     </div>
     <div class="frmRow" style="display: table-row">
-      <div style="display: table-cell">
+      <div style="display: table-cell;text-align: left">
         <label for="txtDOB">Date Of Birth</label>
       </div>
       <div style="display: table-cell;width:2%"></div>
-      <div style="display: table-cell">
+      <div style="display: table-cell;text-align: left">
         <mat-form-field>
           <input matInput readonly="readonly" [matDatepicker]="dob" [(ngModel)]="user.DOB" formControlName="DOB">
           <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
           <mat-datepicker #dob></mat-datepicker>
         </mat-form-field>
+      </div>
+    </div>
+    <div class="frmRow" style="display: table-row">
+      <div style="display: table-cell;text-align: left">
+        <label for="txtDOB">Gender</label>
+      </div>
+      <div style="display: table-cell;width:2%"></div>
+      <div style="display: table-cell;white-space: nowrap;text-align: left">       
+          <mat-radio-group [(ngModel)]="user.Gender" formControlName="Gender">
+            <mat-radio-button value="M">Male</mat-radio-button>
+            <mat-radio-button value="F">Female</mat-radio-button>
+          </mat-radio-group>        
       </div>
     </div>
     <div class="frmRow" style="display: table-row">

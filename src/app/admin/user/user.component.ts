@@ -48,7 +48,7 @@ export class UserComponent implements OnInit {
         alert(response.value);
         this.user = new User('', '', '', '');
       }
-    )
+    );
   }
 
   onClear() {
